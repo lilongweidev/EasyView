@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+    <com.easy.view.MacAddressEditText
+        android:id="@+id/mac_et"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:boxBackgroundColor="@color/white"
+        app:boxStrokeColor="@color/black"
+        app:boxStrokeWidth="2dp"
+        app:boxWidth="48dp"
+        app:separator=":"
+        app:textColor="@color/black"
+        app:textSize="16sp" />
+
+    <Button
+        android:id="@+id/btn_mac"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="获取地址" />
+
+    <com.easy.view.CircularProgressBar
+        android:id="@+id/cpb_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        app:maxProgress="100"
+        app:progress="10"
+        app:progressbarBackgroundColor="@color/purple_500"
+        app:progressbarColor="@color/purple_200"
+        app:radius="80dp"
+        app:strokeWidth="16dp"
+        app:text="10%"
+        app:textColor="@color/teal_200"
+        app:textSize="28sp" />
+
+    <Button
+        android:id="@+id/btn_set_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="随机设置进度" />
+
+    <com.easy.view.TimingTextView
+        android:id="@+id/tv_timing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="计时文字"
+        android:textColor="@color/black"
+        android:textSize="32sp"
+        app:countdown="false"
+        app:max="60"
+        app:unit="s" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <CheckBox
+            android:id="@+id/cb_flag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="计时" />
+
+        <Button
+            android:id="@+id/btn_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="开始" />
+    </LinearLayout>
+</LinearLayout>

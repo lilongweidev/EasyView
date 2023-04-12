@@ -1,0 +1,162 @@
+plugins {
+    id 'com.android.library'
+    id 'maven-publish'
+    id 'signing'
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('gradle.properties').newDataInputStream())
+
+def GROUP_ID = properties.getProperty('GROUP_ID')
+def ARTIFACT_ID = properties.getProperty('ARTIFACT_ID')
+def VERSION_NAME = properties.getProperty('VERSION_NAME')
+
+def POM_NAME = properties.getProperty('POM_NAME')
+def POM_URL = properties.getProperty('POM_URL')
+def POM_DESCRIPTION = properties.getProperty('POM_DESCRIPTION')
+
+def POM_SCM_URL = properties.getProperty('POM_SCM_URL')
+def POM_SCM_CONNECTION = properties.getProperty('POM_SCM_CONNECTION')
+def POM_SCM_DEV_CONNECTION = properties.getProperty('POM_SCM_DEV_CONNECTION')
+
+def POM_LICENCE_COMMENTS = properties.getProperty('POM_LICENCE_COMMENTS')
+def POM_LICENCE_NAME = properties.getProperty('POM_LICENCE_NAME')
+def POM_LICENCE_URL = properties.getProperty('POM_LICENCE_URL')
+def POM_LICENCE_DIST = properties.getProperty('POM_LICENCE_DIST')
+
+def POM_DEVELOPER_ID = properties.getProperty('POM_DEVELOPER_ID')
+def POM_DEVELOPER_NAME = properties.getProperty('POM_DEVELOPER_NAME')
+def POM_DEVELOPER_EMAIL = properties.getProperty('POM_DEVELOPER_EMAIL')
+def POM_DEVELOPER_URL = properties.getProperty('POM_DEVELOPER_URL')
+def POM_ISSUE_MANAGEMENT_SYSTEM = properties.getProperty('POM_ISSUE_MANAGEMENT_SYSTEM')
+def POM_ISSUE_MANAGEMENT_URL = properties.getProperty('POM_ISSUE_MANAGEMENT_URL')
+def POM_INCEPTION_YEAR = properties.getProperty('POM_INCEPTION_YEAR')
+
+configurations {
+    javadocDeps
+}
+
+android {
+    namespace 'com.easy.view'
+    compileSdk 33
+
+    defaultConfig {
+        minSdk 15
+        targetSdk 33
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    task javadoc(type: Javadoc) {
+        source = android.sourceSets.main.java.srcDirs
+        classpath += project.files(android.getBootClasspath().join(File.pathSeparator)) + configurations.javadocDeps
+    }
+
+    javadoc {
+        options {
+            encoding "UTF-8"
+            charSet 'UTF-8'
+            author true
+            version true
+            links "http://docs.oracle.com/javase/8/docs/api"
+        }
+    }
+}
+
+dependencies {
+//    implementation 'androidx.annotation:annotation:1.6.0'
+    implementation 'com.android.support:support-annotations:28.0.0'
+    javadocDeps 'com.android.support:support-annotations:28.0.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'com.google.android.material:material:1.6.1'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+}
+
+def getRepositoryUsername() {
+    return hasProperty('MAVEN_USERNAME') ? MAVEN_USERNAME : ""
+}
+
+def getRepositoryPassword() {
+    return hasProperty('MAVEN_PASSWORD') ? MAVEN_PASSWORD : ""
+}
+
+def getReleaseRepositoryUrl() {
+    return "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+}
+
+def getSnapshotRepositoryUrl() {
+    return "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId GROUP_ID
+            artifactId ARTIFACT_ID
+            version VERSION_NAME
+            pom {
+                name = POM_NAME
+                description = POM_DESCRIPTION
+                url = POM_URL
+                inceptionYear = POM_INCEPTION_YEAR
+
+                scm {
+                    url = POM_SCM_URL
+                    connection = POM_SCM_CONNECTION
+                    developerConnection = POM_SCM_DEV_CONNECTION
+                }
+
+                licenses {
+                    license {
+                        name = POM_LICENCE_NAME
+                        url = POM_LICENCE_URL
+                        distribution = POM_LICENCE_DIST
+                        comments = POM_LICENCE_COMMENTS
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = POM_DEVELOPER_ID
+                        name = POM_DEVELOPER_NAME
+                        email = POM_DEVELOPER_EMAIL
+                        url = POM_DEVELOPER_URL
+                    }
+                }
+
+                issueManagement {
+                    system = POM_ISSUE_MANAGEMENT_SYSTEM
+                    url = POM_ISSUE_MANAGEMENT_URL
+                }
+            }
+            artifact  './build/outputs/aar/easy-release.aar'
+        }
+    }
+    repositories {
+        maven {
+            // 指定要上传的maven仓库
+            url = VERSION_NAME.contains('SNAPSHOT') ? getSnapshotRepositoryUrl() : getReleaseRepositoryUrl()
+            //Maven仓库用户名和密码
+            credentials {
+                username getRepositoryUsername()
+                password getRepositoryPassword()
+            }
+        }
+    }
+}
+signing {
+    sign publishing.publications.maven //签名配置
+}
+
+

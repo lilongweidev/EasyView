@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--文字颜色-->
+    <attr name="textColor" format="color|reference" />
+    <!--文字大小-->
+    <attr name="textSize" format="dimension" />
+    <!--蓝牙地址输入控件-->
+    <declare-styleable name="MacAddressEditText">
+        <!-- 方框大小，宽高一致 -->
+        <attr name="boxWidth" format="dimension" />
+        <!-- 方框背景颜色 -->
+        <attr name="boxBackgroundColor" format="color|reference" />
+        <!-- 方框描边颜色 -->
+        <attr name="boxStrokeColor" format="color|reference" />
+        <!-- 方框描边宽度 -->
+        <attr name="boxStrokeWidth" format="dimension" />
+        <!--文字颜色-->
+        <attr name="textColor" />
+        <!--文字大小-->
+        <attr name="textSize" />
+        <!--分隔符，: 、- -->
+        <attr name="separator" format="string|reference" />
+    </declare-styleable>
+    <!--圆形进度条控件-->
+    <declare-styleable name="CircularProgressBar">
+        <!--半径-->
+        <attr name="radius" format="dimension" />
+        <!--进度条宽度-->
+        <attr name="strokeWidth" format="dimension" />
+        <!--进度条背景颜色-->
+        <attr name="progressbarBackgroundColor" format="color|reference" />
+        <!--进度条进度颜色-->
+        <attr name="progressbarColor" format="color|reference" />
+        <!--最大进度-->
+        <attr name="maxProgress" format="integer" />
+        <!--当前进度-->
+        <attr name="progress" format="integer" />
+        <!--文字-->
+        <attr name="text" format="string" />
+        <!--文字颜色-->
+        <attr name="textColor" />
+        <!--文字大小-->
+        <attr name="textSize" />
+    </declare-styleable>
+    <!--计时控件-->
+    <declare-styleable name="TimingTextView">
+        <!--倒计时-->
+        <attr name="countdown" format="boolean" />
+        <!--时间最大值-->
+        <attr name="max" format="integer" />
+        <!--时间单位，时：h,分：m,秒：s-->
+        <attr name="unit">
+            <enum name="h" value="1" />
+            <enum name="m" value="2" />
+            <enum name="s" value="3" />
+        </attr>
+    </declare-styleable>
+</resources>
