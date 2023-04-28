@@ -32,6 +32,7 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import com.easy.view.listener.HexKeyboardListener;
+import com.easy.view.utils.EasyUtils;
 
 import java.util.Arrays;
 
@@ -205,7 +206,7 @@ public class MacAddressEditText extends View implements HexKeyboardListener {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int width = 0;
-        int margin = Utils.dp2px(mContext, mBoxMargin);
+        int margin = EasyUtils.dp2px(mContext, mBoxMargin);
         switch (MeasureSpec.getMode(widthMeasureSpec)) {
             case MeasureSpec.UNSPECIFIED:
             case MeasureSpec.AT_MOST:   //wrap_content
@@ -236,7 +237,7 @@ public class MacAddressEditText extends View implements HexKeyboardListener {
      */
     private void drawBox(Canvas canvas) {
         //The spacing of each box
-        int margin = Utils.dp2px(mContext, mBoxMargin);
+        int margin = EasyUtils.dp2px(mContext, mBoxMargin);
         for (int i = 0; i < mBoxNum; i++) {
             //To draw a rectangular box, you need the positions of the left, top, right and bottom points
             float left = i * mBoxWidth + i * margin;
@@ -245,7 +246,7 @@ public class MacAddressEditText extends View implements HexKeyboardListener {
             float bottom = mBoxWidth;
             RectF rectF = new RectF(left, top, right, bottom);
             //Draw a rounded rectangle box
-            int radius = Utils.dp2px(mContext, mBoxCornerRadius);
+            int radius = EasyUtils.dp2px(mContext, mBoxCornerRadius);
             canvas.drawRoundRect(rectF, radius, radius, mBoxPaint);
             //Draw a rounded rectangle border
             float strokeWidth = mBoxStrokeWidth / 2;
@@ -259,7 +260,7 @@ public class MacAddressEditText extends View implements HexKeyboardListener {
      * Draw Mac address
      */
     private void drawMacAddress(Canvas canvas) {
-        int boxMargin = Utils.dp2px(mContext, mBoxMargin);
+        int boxMargin = EasyUtils.dp2px(mContext, mBoxMargin);
         for (int i = 0; i < macAddressArray.length; i++) {
             if (macAddressArray[i] != null) {
                 //Drawn text
@@ -287,7 +288,7 @@ public class MacAddressEditText extends View implements HexKeyboardListener {
         if (event != null) {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 //Displays the Hex keyboard Dialog
-                Utils.showHexKeyboardDialog(mContext, this);
+                EasyUtils.showHexKeyboardDialog(mContext, this);
                 return true;
             }
         }

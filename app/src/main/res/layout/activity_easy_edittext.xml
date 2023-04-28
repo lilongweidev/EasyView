@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".used.EasyEditTextActivity">
+
+    <!--简易输入框-->
+    <com.easy.view.EasyEditText
+        android:id="@+id/et_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:boxBackgroundColor="@color/white"
+        app:boxFocusStrokeColor="@color/green"
+        app:boxNum="6"
+        app:boxStrokeColor="@color/black"
+        app:boxStrokeWidth="2dp"
+        app:boxWidth="48dp"
+        app:ciphertext="false"
+        app:textColor="@color/black"
+        app:textSize="16sp" />
+
+    <CheckBox
+        android:id="@+id/cb_flag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="明文" />
+
+    <Button
+        android:id="@+id/btn_get_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="获取内容" />
+</LinearLayout>

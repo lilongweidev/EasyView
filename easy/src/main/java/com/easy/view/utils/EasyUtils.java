@@ -13,21 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.easy.view;
+package com.easy.view.utils;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 
+import com.easy.view.R;
 import com.easy.view.listener.HexKeyboardListener;
+import com.easy.view.listener.NumberKeyboardListener;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 /**
  * Tool class
@@ -35,7 +34,7 @@ import java.util.Locale;
  * @author llw
  * @since 2023/3/24
  */
-public class Utils {
+public class EasyUtils {
 
     public static final String HOUR_MINUTE_SECOND = "HH:mm:ss";
     public static final String HOUR_MINUTE_SECOND_CN = "HH时mm分ss秒";
@@ -63,7 +62,7 @@ public class Utils {
     }
 
     /**
-     * Displays the Hex keyboard Dialog
+     * 显示Hex键盘弹窗
      *
      * @param listener Hex keyboard key monitoring
      */
@@ -104,6 +103,62 @@ public class Utils {
             params.dimAmount = 0.0f;
             dialog.getWindow().setAttributes(params);
         }
+        dialog.show();
+    }
+
+    /**
+     * 显示数字键盘弹窗
+     *
+     * @param listener Num keyboard key monitoring
+     */
+    public static void showNumKeyboardDialog(@NonNull Context context, @NonNull NumberKeyboardListener listener) {
+        BottomSheetDialog dialog = new BottomSheetDialog(context);
+        //Get the layout view from the xml
+        View view = LayoutInflater.from(context).inflate(R.layout.lay_number_keyboard, null, false);
+        //Click the button to trigger the interface callback
+        view.findViewById(R.id.btn_0).setOnClickListener(v -> listener.onNum("0"));
+        view.findViewById(R.id.btn_1).setOnClickListener(v -> listener.onNum("1"));
+        view.findViewById(R.id.btn_2).setOnClickListener(v -> listener.onNum("2"));
+        view.findViewById(R.id.btn_3).setOnClickListener(v -> listener.onNum("3"));
+        view.findViewById(R.id.btn_4).setOnClickListener(v -> listener.onNum("4"));
+        view.findViewById(R.id.btn_5).setOnClickListener(v -> listener.onNum("5"));
+        view.findViewById(R.id.btn_6).setOnClickListener(v -> listener.onNum("6"));
+        view.findViewById(R.id.btn_7).setOnClickListener(v -> listener.onNum("7"));
+        view.findViewById(R.id.btn_8).setOnClickListener(v -> listener.onNum("8"));
+        view.findViewById(R.id.btn_9).setOnClickListener(v -> listener.onNum("9"));
+        view.findViewById(R.id.btn_del).setOnClickListener(v -> listener.onDelete());
+        view.findViewById(R.id.btn_complete).setOnClickListener(v -> {
+            listener.onComplete();
+            dialog.dismiss();
+        });
+        //Click outside does not disappear
+        dialog.setCancelable(true);
+        //Set content view
+        dialog.setContentView(view);
+        if (dialog.getWindow() != null) {
+            //Set the popover background transparent
+            WindowManager.LayoutParams params = dialog.getWindow().getAttributes();
+            params.dimAmount = 0.0f;
+            dialog.getWindow().setAttributes(params);
+        }
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                listener.onDialogShow();
+            }
+        });
+        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                listener.onDialogDismiss();
+            }
+        });
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                listener.onDialogDismiss();
+            }
+        });
         dialog.show();
     }
 }

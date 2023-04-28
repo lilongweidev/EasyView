@@ -12,6 +12,22 @@
         android:theme="@style/Theme.EasyView"
         tools:targetApi="31">
         <activity
+            android:label="简易输入框"
+            android:name=".used.EasyEditTextActivity"
+            android:exported="false" />
+        <activity
+            android:label="计时文字"
+            android:name=".used.TimingTextActivity"
+            android:exported="false" />
+        <activity
+            android:label="圆环进度条"
+            android:name=".used.ProgressBarActivity"
+            android:exported="false" />
+        <activity
+            android:label="Mac地址输入框"
+            android:name=".used.MacAddressActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

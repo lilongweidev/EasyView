@@ -16,31 +16,36 @@
 package com.easy.view.listener;
 
 /**
- * Hex 键盘监听
+ * 数字键盘监听
  *
  * @author llw
- * @since 2023/3/24
+ * @since 2023/4/30
  */
-public interface HexKeyboardListener {
+public interface NumberKeyboardListener {
 
     /**
-     * Hex character
-     * @param hex 0~9，A~F
+     * 数字字符
+     * @param num 0~9
      */
-    void onHex(String hex);
+    void onNum(String num);
 
     /**
-     * delete
+     * 删除
      */
     void onDelete();
 
     /**
-     * Complete deletion
-     */
-    void onDeleteAll();
-
-    /**
-     * complete
+     * 完成
      */
     void onComplete();
+
+    /**
+     * 弹窗关闭
+     */
+    void onDialogDismiss();
+
+    /**
+     * 弹窗显示
+     */
+    void onDialogShow();
 }

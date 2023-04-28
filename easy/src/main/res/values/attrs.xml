@@ -4,16 +4,25 @@
     <attr name="textColor" format="color|reference" />
     <!--文字大小-->
     <attr name="textSize" format="dimension" />
+    <!-- 方框大小，宽高一致 -->
+    <attr name="boxWidth" format="dimension" />
+    <!-- 方框背景颜色 -->
+    <attr name="boxBackgroundColor" format="color|reference" />
+    <!-- 方框描边颜色 -->
+    <attr name="boxStrokeColor" format="color|reference" />
+    <!-- 方框描边宽度 -->
+    <attr name="boxStrokeWidth" format="dimension" />
+
     <!--蓝牙地址输入控件-->
     <declare-styleable name="MacAddressEditText">
         <!-- 方框大小，宽高一致 -->
-        <attr name="boxWidth" format="dimension" />
+        <attr name="boxWidth" />
         <!-- 方框背景颜色 -->
-        <attr name="boxBackgroundColor" format="color|reference" />
+        <attr name="boxBackgroundColor" />
         <!-- 方框描边颜色 -->
-        <attr name="boxStrokeColor" format="color|reference" />
+        <attr name="boxStrokeColor" />
         <!-- 方框描边宽度 -->
-        <attr name="boxStrokeWidth" format="dimension" />
+        <attr name="boxStrokeWidth" />
         <!--文字颜色-->
         <attr name="textColor" />
         <!--文字大小-->
@@ -55,4 +64,26 @@
             <enum name="s" value="3" />
         </attr>
     </declare-styleable>
+    <!--简易输入框-->
+    <declare-styleable name="EasyEditText">
+        <!-- 方框大小，宽高一致 -->
+        <attr name="boxWidth" />
+        <!-- 方框背景颜色 -->
+        <attr name="boxBackgroundColor" />
+        <!-- 方框描边颜色 -->
+        <attr name="boxStrokeColor" />
+        <!-- 方框焦点描边颜色 -->
+        <attr name="boxFocusStrokeColor" format="color|reference"/>
+        <!-- 方框描边宽度 -->
+        <attr name="boxStrokeWidth" />
+        <!--文字颜色-->
+        <attr name="textColor" />
+        <!--文字大小-->
+        <attr name="textSize" />
+        <!-- 方框数量 4-6 个-->
+        <attr name="boxNum" format="integer"/>
+        <!--是否密文-->
+        <attr name="ciphertext" format="boolean"/>
+    </declare-styleable>
+
 </resources>
