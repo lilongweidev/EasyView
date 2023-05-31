@@ -1,3 +1,18 @@
+/*
+ * Copyright (C)  Llw, EasyView Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.easy.view;
 
 import android.annotation.SuppressLint;
@@ -14,6 +29,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.Nullable;
+
 import androidx.core.content.ContextCompat;
 
 import com.easy.view.listener.NumberKeyboardListener;
@@ -24,6 +40,8 @@ import java.util.List;
 
 /**
  * 简化输入框，可用于密码框、验证码框
+ * @author llw
+ * @since 2023/4/30
  */
 public class EasyEditText extends View implements NumberKeyboardListener {
 
@@ -93,20 +111,24 @@ public class EasyEditText extends View implements NumberKeyboardListener {
     private float strokeRadius;
 
     /**
-     * Input length
+     * 输入长度
      */
     private final int mInputLength;
     /**
-     * Input array
+     * 输入数组
      */
     private final String[] inputArray;
     /**
-     * Current input position
+     * 当前输入位置
      */
     private int currentInputPosition = 0;
-
+    /**
+     * 焦点边框列表
+     */
     private final List<RectF> focusList = new ArrayList<>();
-
+    /**
+     * 是否获取焦点
+     */
     private boolean isFocus = false;
     /**
      * 是否密文显示
@@ -202,17 +224,17 @@ public class EasyEditText extends View implements NumberKeyboardListener {
      */
     @Override
     protected void onDraw(Canvas canvas) {
-        //Draw box
+        //绘制边框
         drawBox(canvas);
-        //Draw Mac address
-        drawMacAddress(canvas);
+        //绘制文字
+        drawText(canvas);
     }
 
     /**
      * 绘制方框
      */
     private void drawBox(Canvas canvas) {
-        //The spacing of each box
+        //每个方框的间距
         int margin = EasyUtils.dp2px(mContext, mBoxMargin);
         int radius = EasyUtils.dp2px(mContext, mBoxCornerRadius);
         //Draw a rounded rectangle border
@@ -233,39 +255,41 @@ public class EasyEditText extends View implements NumberKeyboardListener {
 
         for (int i = 0; i < mBoxNum; i++) {
             strokeRadius = radius - strokeWidth;
+            //根据当前绘制位置和是否获取焦点设置画笔颜色
             if (i <= currentInputPosition && isFocus) {
                 mBoxStrokePaint.setColor(mBoxFocusStrokeColor);
             } else {
                 mBoxStrokePaint.setColor(mBoxStrokeColor);
             }
+            //绘制边框
             canvas.drawRoundRect(focusList.get(i), strokeRadius, strokeRadius, mBoxStrokePaint);
         }
     }
 
     /**
-     * Draw Mac address
+     * 绘制文字
      */
-    private void drawMacAddress(Canvas canvas) {
+    private void drawText(Canvas canvas) {
         int boxMargin = EasyUtils.dp2px(mContext, mBoxMargin);
         for (int i = 0; i < inputArray.length; i++) {
             if (inputArray[i] != null) {
-                //Drawn text
+                //绘制的文字
                 String content = ciphertext ? ciphertextContent : inputArray[i];
-                //Gets the drawn text boundary
+                //获取绘制的文字边界
                 mTextPaint.getTextBounds(content, 0, content.length(), mTextRect);
-                //Drawn position
+                //绘制的位置
                 int offset = (mTextRect.top + mTextRect.bottom) / 2;
-                //Draw text, need to determine the starting point of X, Y coordinate points
+                //绘制文字，需要确定起始点的X、Y的坐标点
                 float x = (float) (getPaddingLeft() + mBoxWidth * i + boxMargin * i + mBoxWidth / 2);
                 float y = (float) (getPaddingTop() + mBoxWidth / 2) - offset;
-                //Draw text
+                //绘制文字
                 canvas.drawText(content, x, y, mTextPaint);
             }
         }
     }
 
     /**
-     * Touch event
+     * 触摸事件
      */
     @SuppressLint("ClickableViewAccessibility")
     @Override

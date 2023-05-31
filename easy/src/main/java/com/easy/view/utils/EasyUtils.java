@@ -1,5 +1,5 @@
 /*
- * Copyright (C)  guolin, Glance Open Source Project
+ * Copyright (C)  Llw, EasyView Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -109,13 +109,13 @@ public class EasyUtils {
     /**
      * 显示数字键盘弹窗
      *
-     * @param listener Num keyboard key monitoring
+     * @param listener 数字键盘监听
      */
     public static void showNumKeyboardDialog(@NonNull Context context, @NonNull NumberKeyboardListener listener) {
         BottomSheetDialog dialog = new BottomSheetDialog(context);
-        //Get the layout view from the xml
+        //从xml中获取布局视图
         View view = LayoutInflater.from(context).inflate(R.layout.lay_number_keyboard, null, false);
-        //Click the button to trigger the interface callback
+        //单击按钮触发接口回调
         view.findViewById(R.id.btn_0).setOnClickListener(v -> listener.onNum("0"));
         view.findViewById(R.id.btn_1).setOnClickListener(v -> listener.onNum("1"));
         view.findViewById(R.id.btn_2).setOnClickListener(v -> listener.onNum("2"));
@@ -131,34 +131,19 @@ public class EasyUtils {
             listener.onComplete();
             dialog.dismiss();
         });
-        //Click outside does not disappear
+        //点击外面消失
         dialog.setCancelable(true);
-        //Set content view
+        //设置内容视图
         dialog.setContentView(view);
         if (dialog.getWindow() != null) {
-            //Set the popover background transparent
+            //设置弹出窗口背景透明
             WindowManager.LayoutParams params = dialog.getWindow().getAttributes();
             params.dimAmount = 0.0f;
             dialog.getWindow().setAttributes(params);
         }
-        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
-            @Override
-            public void onShow(DialogInterface dialog) {
-                listener.onDialogShow();
-            }
-        });
-        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialog) {
-                listener.onDialogDismiss();
-            }
-        });
-        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                listener.onDialogDismiss();
-            }
-        });
+        dialog.setOnShowListener(dialog1 -> listener.onDialogShow());
+        dialog.setOnCancelListener(dialog12 -> listener.onDialogDismiss());
+        dialog.setOnDismissListener(dialog13 -> listener.onDialogDismiss());
         dialog.show();
     }
 }

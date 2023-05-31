@@ -13,4 +13,5 @@
     <color name="box_default_stroke_color">#009C3A</color>
     <color name="box_default_bg_color">#f8f8f8</color>
     <color name="tx_default_color">#0C973F</color>
+    <color name="xy_color">#050505</color>
 </resources>

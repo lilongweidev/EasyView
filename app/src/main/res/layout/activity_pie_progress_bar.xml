@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".used.PieProgressBarActivity">
+
+    <com.easy.view.PieProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:customAngle="right"
+        app:gradient="false"
+        app:gradientColorArray="@array/color"
+        app:maxProgress="100"
+        app:progress="5"
+        app:progressbarColor="@color/green"
+        app:radius="80dp" />
+
+    <CheckBox
+        android:id="@+id/cb_gradient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="是否渐变" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="开始角度："
+            android:textColor="@color/black" />
+
+        <RadioGroup
+            android:id="@+id/rg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="0%" />
+
+            <RadioButton
+                android:id="@+id/rb_90"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="90%" />
+
+            <RadioButton
+                android:id="@+id/rb_180"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="180%" />
+
+            <RadioButton
+                android:id="@+id/rb_270"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="270%" />
+        </RadioGroup>
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_set_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="随机设置进度" />
+
+    <Button
+        android:id="@+id/btn_set_progress_0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="设置0%进度" />
+
+    <Button
+        android:id="@+id/btn_set_progress_100"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="设置100%进度" />
+</LinearLayout>

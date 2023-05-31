@@ -6,27 +6,35 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.EasyView"
         tools:targetApi="31">
         <activity
-            android:label="简易输入框"
+            android:name=".used.PieProgressBarActivity"
+            android:exported="false"
+            android:label="饼状进度条"/>
+        <activity
+            android:name=".used.EasyChartActivity"
+            android:exported="false"
+            android:label="简易图表" />
+        <activity
             android:name=".used.EasyEditTextActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="简易输入框" />
         <activity
-            android:label="计时文字"
             android:name=".used.TimingTextActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="计时文字" />
         <activity
-            android:label="圆环进度条"
             android:name=".used.ProgressBarActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="圆环进度条" />
         <activity
-            android:label="Mac地址输入框"
             android:name=".used.MacAddressActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Mac地址输入框" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

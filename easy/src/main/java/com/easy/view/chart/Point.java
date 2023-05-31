@@ -13,13 +13,39 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.easy.view.listener;
+package com.easy.view.chart;
 
 /**
- * 计时监听
- * @author llw
- * @since 2023/4/3
+ * 绘制点
  */
-public interface TimingListener {
-    void onEnd();
+public class Point {
+    /**
+     * X轴坐标
+     */
+    private float x;
+    /**
+     * Y轴坐标
+     */
+    private float y;
+
+    public float getX() {
+        return x;
+    }
+
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public float getY() {
+        return y;
+    }
+
+    public void setY(float y) {
+        this.y = y;
+    }
+
+    public Point(float x, float y) {
+        this.x = x;
+        this.y = y;
+    }
 }

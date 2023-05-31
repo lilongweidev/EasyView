@@ -12,7 +12,20 @@
     <attr name="boxStrokeColor" format="color|reference" />
     <!-- 方框描边宽度 -->
     <attr name="boxStrokeWidth" format="dimension" />
-
+    <!--半径-->
+    <attr name="radius" format="dimension" />
+    <!--最大进度-->
+    <attr name="maxProgress" format="integer" />
+    <!--当前进度-->
+    <attr name="progress" format="integer" />
+    <!--进度条描边宽度-->
+    <attr name="strokeWidth" format="dimension" />
+    <!--进度条进度颜色-->
+    <attr name="progressbarColor" format="color|reference" />
+    <!--进度是否渐变-->
+    <attr name="gradient" format="boolean" />
+    <!--渐变颜色数组-->
+    <attr name="gradientColorArray" format="reference" />
     <!--蓝牙地址输入控件-->
     <declare-styleable name="MacAddressEditText">
         <!-- 方框大小，宽高一致 -->
@@ -33,23 +46,27 @@
     <!--圆形进度条控件-->
     <declare-styleable name="CircularProgressBar">
         <!--半径-->
-        <attr name="radius" format="dimension" />
-        <!--进度条宽度-->
-        <attr name="strokeWidth" format="dimension" />
+        <attr name="radius" />
+        <!--进度条描边宽度-->
+        <attr name="strokeWidth"/>
         <!--进度条背景颜色-->
         <attr name="progressbarBackgroundColor" format="color|reference" />
         <!--进度条进度颜色-->
-        <attr name="progressbarColor" format="color|reference" />
+        <attr name="progressbarColor" />
         <!--最大进度-->
-        <attr name="maxProgress" format="integer" />
+        <attr name="maxProgress" />
         <!--当前进度-->
-        <attr name="progress" format="integer" />
+        <attr name="progress"/>
         <!--文字-->
         <attr name="text" format="string" />
         <!--文字颜色-->
         <attr name="textColor" />
         <!--文字大小-->
         <attr name="textSize" />
+        <!--进度是否渐变-->
+        <attr name="gradient" />
+        <!--渐变颜色数组-->
+        <attr name="gradientColorArray" />
     </declare-styleable>
     <!--计时控件-->
     <declare-styleable name="TimingTextView">
@@ -73,7 +90,7 @@
         <!-- 方框描边颜色 -->
         <attr name="boxStrokeColor" />
         <!-- 方框焦点描边颜色 -->
-        <attr name="boxFocusStrokeColor" format="color|reference"/>
+        <attr name="boxFocusStrokeColor" format="color|reference" />
         <!-- 方框描边宽度 -->
         <attr name="boxStrokeWidth" />
         <!--文字颜色-->
@@ -81,9 +98,33 @@
         <!--文字大小-->
         <attr name="textSize" />
         <!-- 方框数量 4-6 个-->
-        <attr name="boxNum" format="integer"/>
+        <attr name="boxNum" format="integer" />
         <!--是否密文-->
-        <attr name="ciphertext" format="boolean"/>
+        <attr name="ciphertext" format="boolean" />
+    </declare-styleable>
+    <!--饼状进度条-->
+    <declare-styleable name="PieProgressBar">
+        <!--半径-->
+        <attr name="radius" />
+        <!--最大进度-->
+        <attr name="maxProgress" />
+        <!--当前进度-->
+        <attr name="progress" />
+        <!--进度条进度颜色-->
+        <attr name="progressbarColor" />
+        <!--进度条描边宽度-->
+        <attr name="strokeWidth"/>
+        <!--进度是否渐变-->
+        <attr name="gradient" />
+        <!--渐变颜色数组-->
+        <attr name="gradientColorArray" />
+        <!--自定义开始角度 0 ，90，180，270-->
+        <attr name="customAngle">
+            <enum name="right" value="0" />
+            <enum name="bottom" value="90" />
+            <enum name="left" value="180" />
+            <enum name="top" value="270" />
+        </attr>
     </declare-styleable>
 
 </resources>

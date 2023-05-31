@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">EasyView</string>
+
+    <string-array name="color">
+        <item>#00FFF7</item>
+        <item>#FFDD00</item>
+        <item>#FF0000</item>
+    </string-array>
 </resources>

@@ -1,5 +1,5 @@
 /*
- * Copyright (C)  guolin, Glance Open Source Project
+ * Copyright (C)  Llw, EasyView Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,13 +19,15 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.Shader;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
-
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
@@ -91,6 +93,14 @@ public class CircularProgressBar extends View {
      */
     private float mTextSize;
     /**
+     * 是否渐变
+     */
+    private boolean isGradient;
+    /**
+     * 渐变颜色数组
+     */
+    private int[] colorArray;
+    /**
      * 动画的执行时长
      */
     private long mDuration = 1000;
@@ -121,6 +131,16 @@ public class CircularProgressBar extends View {
         mTextColor = array.getColor(R.styleable.CircularProgressBar_textColor, ContextCompat.getColor(context, R.color.black));
         mTextSize = array.getDimensionPixelSize(R.styleable.CircularProgressBar_textSize, (int) TypedValue
                 .applyDimension(TypedValue.COMPLEX_UNIT_SP, 14, getResources().getDisplayMetrics()));
+        //是否渐变
+        isGradient = array.getBoolean(R.styleable.CircularProgressBar_gradient, false);
+        //渐变颜色数组
+        CharSequence[] textArray = array.getTextArray(R.styleable.CircularProgressBar_gradientColorArray);
+        if (textArray != null) {
+            colorArray = new int[textArray.length];
+            for (int i = 0; i < textArray.length; i++) {
+                colorArray[i] = Color.parseColor((String) textArray[i]);
+            }
+        }
         array.recycle();
     }
 
@@ -185,6 +205,11 @@ public class CircularProgressBar extends View {
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(mStrokeWidth);
         paint.setColor(mProgressColor);
+
+        if (isGradient && colorArray != null) {
+            paint.setShader(new LinearGradient(0, 0, rectF.right, rectF.top, colorArray, null, Shader.TileMode.MIRROR));
+        }
+
         paint.setAntiAlias(true);
         paint.setStrokeCap(Paint.Cap.ROUND);
         if (!isAnimation) {
@@ -247,6 +272,21 @@ public class CircularProgressBar extends View {
             throw new IllegalArgumentException("textSize can not be less than 0");
         }
         mTextSize = textSize;
+    }
+
+    /**
+     * 设置是否渐变
+     */
+    public void setGradient(boolean gradient) {
+        isGradient = gradient;
+    }
+
+    /**
+     * 设置渐变的颜色
+     */
+    public void setColorArray(int[] colorArr) {
+        if (colorArr == null) return;
+        colorArray = colorArr;
     }
 
 

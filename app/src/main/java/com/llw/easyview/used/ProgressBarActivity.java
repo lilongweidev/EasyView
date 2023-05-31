@@ -1,7 +1,7 @@
 package com.llw.easyview.used;
 
+import android.graphics.Color;
 import android.widget.Toast;
-
 import com.llw.easyview.EasyActivity;
 import com.llw.easyview.databinding.ActivityProgressBarBinding;
 
@@ -21,6 +21,9 @@ public class ProgressBarActivity extends EasyActivity<ActivityProgressBarBinding
             Toast.makeText(this, "" + progress, Toast.LENGTH_SHORT).show();
             binding.cpbTest.setText(progress + "%");
             binding.cpbTest.setProgress(progress);
+            binding.cpbTest.setGradient(true);
+            binding.cpbTest.setColorArray(new int[]{Color.RED,Color.YELLOW});
         });
+
     }
 }

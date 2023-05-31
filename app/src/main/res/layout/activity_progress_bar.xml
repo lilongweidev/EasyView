@@ -21,7 +21,9 @@
         app:strokeWidth="16dp"
         app:text="10%"
         app:textColor="@color/teal_200"
-        app:textSize="28sp" />
+        app:textSize="28sp"
+        app:gradient="true"
+        app:gradientColorArray="@array/color"/>
 
     <Button
         android:id="@+id/btn_set_progress"
