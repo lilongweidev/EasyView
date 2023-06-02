@@ -12,9 +12,13 @@
         android:theme="@style/Theme.EasyView"
         tools:targetApi="31">
         <activity
+            android:name=".used.EasyDialogActivity"
+            android:exported="false"
+            android:label="简易弹窗" />
+        <activity
             android:name=".used.PieProgressBarActivity"
             android:exported="false"
-            android:label="饼状进度条"/>
+            android:label="饼状进度条" />
         <activity
             android:name=".used.EasyChartActivity"
             android:exported="false"
