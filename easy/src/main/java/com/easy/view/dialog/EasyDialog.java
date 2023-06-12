@@ -1,29 +1,42 @@
+/*
+ * Copyright (C)  Llw, EasyView Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.easy.view.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 
 import com.easy.view.R;
-import com.easy.view.utils.EasyUtils;
 
+/**
+ * 简易弹窗
+ *
+ * @author llw
+ * @since 2023/6/3
+ */
 public class EasyDialog extends Dialog {
 
-    private DialogController mController;
-
-//    public EasyDialog(@NonNull Context context) {
-//        this(context);
-//    }
+    private final DialogController mController;
 
     public EasyDialog(@NonNull Context context, int themeResId) {
         super(context, themeResId);
@@ -47,7 +60,7 @@ public class EasyDialog extends Dialog {
      */
     public static class Builder {
         //弹窗参数类
-        private DialogController.DialogParams dialogParams;
+        private final DialogController.DialogParams dialogParams;
 
         public Builder(Context context) {
             this(context, R.style.EasyDialog);
@@ -248,44 +261,37 @@ public class EasyDialog extends Dialog {
         }
 
         /**
-         * 对话框从屏幕顶部弹出
-         *
-         * @param isAnimation
+         * 添加自定义动画
+         * @param gravity 弹窗位置  关系到使用什么动画
+         * @param isAnimation 是否开启动画
          * @return Builder
          */
-        public Builder fromTop(boolean isAnimation) {
-            if (isAnimation) {
-                dialogParams.mAnimation = R.style.dialog_from_top_anim;
+        public Builder addCustomAnimation(int gravity, boolean isAnimation) {
+            switch (gravity) {
+                case Gravity.TOP:
+                    dialogParams.mGravity = Gravity.TOP;
+                    dialogParams.mAnimation = R.style.dialog_from_top_anim;
+                    break;
+                case Gravity.RIGHT:
+                    dialogParams.mGravity = Gravity.RIGHT;
+                    dialogParams.mAnimation = R.style.dialog_from_right_anim;
+                    break;
+                case Gravity.BOTTOM:
+                    dialogParams.mGravity = Gravity.BOTTOM;
+                    dialogParams.mAnimation = R.style.dialog_from_bottom_anim;
+                    break;
+                case Gravity.LEFT:
+                    dialogParams.mGravity = Gravity.LEFT;
+                    dialogParams.mAnimation = R.style.dialog_from_left_anim;
+                    break;
+                default:
+                    dialogParams.mGravity = Gravity.CENTER;
+                    dialogParams.mAnimation = R.style.dialog_scale_anim;
+                    break;
             }
-            dialogParams.mGravity = Gravity.TOP;
-            return this;
-        }
-
-        /**
-         * 对话框从屏幕底部弹出
-         *
-         * @param isAnimation
-         * @return Builder
-         */
-        public Builder fromBottom(boolean isAnimation) {
-            if (isAnimation) {
-                dialogParams.mAnimation = R.style.dialog_from_bottom_anim;
+            if (!isAnimation) {
+                dialogParams.mAnimation = 0;
             }
-            dialogParams.mGravity = Gravity.BOTTOM;
-            return this;
-        }
-
-        /**
-         * 对话框从屏幕右侧弹出
-         *
-         * @param isAnimation
-         * @return Builder
-         */
-        public Builder fromRight(boolean isAnimation) {
-            if (isAnimation) {
-                dialogParams.mAnimation = R.style.dialog_scale_anim;
-            }
-            dialogParams.mGravity = Gravity.RIGHT;
             return this;
         }
 
@@ -390,52 +396,5 @@ public class EasyDialog extends Dialog {
             dialog.show();
             return dialog;
         }
-    }
-
-    public EasyDialog showTipDialog(final Context context,
-                                    @NonNull String title,
-                                    @NonNull String content,
-                                    com.easy.view.dialog.OnCancelListener onCancelListener,
-                                    OnConfirmListener onConfirmListener) {
-
-        //通过构建者模式设置弹窗的相关参数
-        EasyDialog.Builder builder = new EasyDialog.Builder(context)
-                //添加默认出现动画
-                .addDefaultAnimation()
-                //设置内容视图
-                .setContentView(R.layout.dialog_tip)
-                //设置对话框可取消
-                .setCancelable(true)
-                //设置标题
-                .setText(R.id.tv_title, title)
-                //设置内容
-                .setText(R.id.tv_content, content)
-                //设置文字颜色
-                .setTextColor(R.id.tv_confirm, ContextCompat.getColor(context, R.color.white))
-                //设置弹窗宽高
-                .setWidthAndHeight(EasyUtils.dp2px(context, 280), LinearLayout.LayoutParams.WRAP_CONTENT)
-                //添加点击事件  取消
-                .setOnClickListener(R.id.tv_cancel, v1 -> {
-                    dismiss();
-                })
-                //添加点击事件  确定
-                .setOnClickListener(R.id.tv_confirm, v2 -> {
-                    if (onConfirmListener!=null) {
-                        onConfirmListener.onConfirm();
-                    }
-                    dismiss();
-                })
-                //添加取消监听
-                .setOnCancelListener(dialog -> {
-                    if (onCancelListener != null) {
-                        onCancelListener.onCancel();
-                    }
-                    dismiss();
-                });
-        //创建弹窗
-        EasyDialog easyDialog = builder.create();
-        //显示弹窗
-        easyDialog.show();
-        return this;
     }
 }

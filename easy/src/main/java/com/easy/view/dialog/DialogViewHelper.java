@@ -39,24 +39,34 @@ import java.lang.ref.WeakReference;
 public class DialogViewHelper {
 
     //内容视图
-    private View mView;
+    private final View mView;
     //弱应用视图
     private final SparseArray<WeakReference<View>> mSubViews;
 
-    public DialogViewHelper(Context context, int layoutResId) {
-        //初始化
-        mSubViews = new SparseArray<>();
-        //获取弹窗视图
-        mView = LayoutInflater.from(context).inflate(layoutResId, null);
-    }
-
-    public DialogViewHelper(Context context, View view) {
+    /**
+     * 构造方法
+     *
+     * @param view 视图
+     */
+    public DialogViewHelper(View view) {
         //初始化
         mSubViews = new SparseArray<>();
         //获取弹窗视图
         mView = view;
     }
 
+    /**
+     * 构造方法
+     *
+     * @param context     上下文
+     * @param layoutResId 布局资源id
+     */
+    public DialogViewHelper(Context context, int layoutResId) {
+        //初始化
+        mSubViews = new SparseArray<>();
+        //获取弹窗视图
+        mView = LayoutInflater.from(context).inflate(layoutResId, null);
+    }
 
     /**
      * 获取弹窗内容视图

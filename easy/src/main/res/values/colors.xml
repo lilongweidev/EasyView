@@ -17,4 +17,5 @@
     <color name="line">#EEE</color>
     <color name="gray_white">#f8f8f8</color>
     <color name="green">#0C973F</color>
+    <color name="dark_green">#035C24</color>
 </resources>

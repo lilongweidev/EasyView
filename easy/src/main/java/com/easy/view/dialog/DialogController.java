@@ -27,9 +27,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AlertDialog;
 
 /**
  * 弹窗控制
@@ -39,9 +37,9 @@ import androidx.appcompat.app.AlertDialog;
  */
 public class DialogController {
     //对话弹窗
-    private EasyDialog mEasyDialog;
+    private final EasyDialog mEasyDialog;
     //窗口
-    private Window mWindow;
+    private final Window mWindow;
     //帮助类
     private DialogViewHelper mViewHelper;
 
@@ -170,14 +168,11 @@ public class DialogController {
             DialogViewHelper helper = null;
 
             if (mView != null) {
-                helper = new DialogViewHelper(mContext, mView);
+                helper = new DialogViewHelper(mView);
             } else if (mLayoutResId != 0) {
                 helper = new DialogViewHelper(mContext, mLayoutResId);
             }
 
-            if (mLayoutResId != 0) {
-                helper = new DialogViewHelper(mContext, mLayoutResId);
-            }
             //如果helper为null，则mLayoutResId为0，没有设置弹窗xml
             if (helper == null) {
                 throw new IllegalArgumentException("Please set layout!");

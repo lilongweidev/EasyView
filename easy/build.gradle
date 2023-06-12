@@ -61,6 +61,10 @@ android {
         classpath += project.files(android.getBootClasspath().join(File.pathSeparator)) + configurations.javadocDeps
     }
 
+    buildFeatures {
+        viewBinding true
+    }
+
     javadoc {
         options {
             encoding "UTF-8"

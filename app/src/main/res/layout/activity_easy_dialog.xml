@@ -5,17 +5,98 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:orientation="vertical"
     tools:context=".used.EasyDialogActivity">
 
-    <Button
-        android:id="@+id/btn_show_tip"
-        android:text="显示提示弹窗"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="----------------- 常规使用 -----------------"
+        android:textColor="@color/black" />
+
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="出现位置："
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <RadioGroup
+            android:id="@+id/rg_gravity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="上" />
+
+            <RadioButton
+                android:id="@+id/rb_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="右" />
+
+            <RadioButton
+                android:id="@+id/rb_bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="下" />
+
+            <RadioButton
+                android:id="@+id/rb_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="左" />
+
+            <RadioButton
+                android:id="@+id/rb_center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="中" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/cb_animation"
+        android:text="是否需要动画"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <CheckBox
+        android:id="@+id/cb_cancelable"
+        android:text="是否点击外部消失"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <Button
         android:id="@+id/btn_show"
-        android:text="出现弹窗"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="显示弹窗" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="----------------- 快捷使用 -----------------"
+        android:textColor="@color/black" />
+
+    <Button
+        android:id="@+id/btn_show_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="快捷提示弹窗" />
+
+    <Button
+        android:id="@+id/btn_show_select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="快捷选择弹窗" />
 </LinearLayout>

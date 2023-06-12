@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<set xmlns:android="http://schemas.android.com/apk/res/android" >
+<set xmlns:android="http://schemas.android.com/apk/res/android">
 
     <scale
         android:duration="135"
@@ -9,7 +9,7 @@
         android:pivotY="50%"
         android:toXScale="1.05"
         android:toYScale="1.05" />
-    
+
     <scale
         android:duration="105"
         android:fromXScale="1.05"
@@ -19,7 +19,7 @@
         android:startOffset="135"
         android:toXScale="0.95"
         android:toYScale="0.95" />
-    
+
     <scale
         android:duration="60"
         android:fromXScale="0.95"
@@ -29,7 +29,7 @@
         android:startOffset="240"
         android:toXScale="1.0"
         android:toYScale="1.0" />
-    
+
     <alpha
         android:duration="90"
         android:fromAlpha="0.0"
