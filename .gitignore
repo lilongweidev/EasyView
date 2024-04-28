@@ -1,6 +1,4 @@
 *.iml
-*.properties
-*.gpg
 .gradle
 /local.properties
 /.idea/caches
@@ -16,8 +14,8 @@
 .cxx
 local.properties
 /secring.gpg
-/gradle.properties
+/key.properties
 secring.gpg
-gradle.properties
+key.properties
 
 

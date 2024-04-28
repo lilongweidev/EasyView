@@ -3,6 +3,7 @@ package com.llw.easyview;
 import com.llw.easyview.databinding.ActivityMainBinding;
 import com.llw.easyview.used.EasyChartActivity;
 import com.llw.easyview.used.EasyDialogActivity;
+import com.llw.easyview.used.EasyRulerActivity;
 import com.llw.easyview.used.MacAddressActivity;
 import com.llw.easyview.used.PieProgressBarActivity;
 import com.llw.easyview.used.ProgressBarActivity;
@@ -23,5 +24,6 @@ public class MainActivity extends EasyActivity<ActivityMainBinding> {
         binding.btnPieProgressBar.setOnClickListener(v -> jumpActivity(PieProgressBarActivity.class));
         binding.btnEasyDialog.setOnClickListener(v -> jumpActivity(EasyDialogActivity.class));
         //binding.btnEasyChart.setOnClickListener(v -> jumpActivity(EasyChartActivity.class));
+        binding.btnEasyRuler.setOnClickListener(v -> jumpActivity(EasyRulerActivity.class));
     }
 }

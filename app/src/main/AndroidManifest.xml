@@ -12,6 +12,9 @@
         android:theme="@style/Theme.EasyView"
         tools:targetApi="31">
         <activity
+            android:name=".used.EasyRulerActivity"
+            android:exported="false" />
+        <activity
             android:name=".used.EasyDialogActivity"
             android:exported="false"
             android:label="简易弹窗" />

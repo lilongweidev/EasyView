@@ -37,7 +37,7 @@ import java.util.Map;
  * 简易图表
  */
 public class EasyChart extends View {
-    private Context mContext;
+    private final Context mContext;
 
     private float mWidth;
     private float mHeight;

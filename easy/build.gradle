@@ -12,17 +12,18 @@ def ARTIFACT_ID = properties.getProperty('ARTIFACT_ID')
 def VERSION_NAME = properties.getProperty('VERSION_NAME')
 
 def POM_NAME = properties.getProperty('POM_NAME')
-def POM_URL = properties.getProperty('POM_URL')
 def POM_DESCRIPTION = properties.getProperty('POM_DESCRIPTION')
-
-def POM_SCM_URL = properties.getProperty('POM_SCM_URL')
-def POM_SCM_CONNECTION = properties.getProperty('POM_SCM_CONNECTION')
-def POM_SCM_DEV_CONNECTION = properties.getProperty('POM_SCM_DEV_CONNECTION')
+def POM_INCEPTION_YEAR = properties.getProperty('POM_INCEPTION_YEAR')
+def POM_URL = properties.getProperty('POM_URL')
 
 def POM_LICENCE_COMMENTS = properties.getProperty('POM_LICENCE_COMMENTS')
 def POM_LICENCE_NAME = properties.getProperty('POM_LICENCE_NAME')
 def POM_LICENCE_URL = properties.getProperty('POM_LICENCE_URL')
 def POM_LICENCE_DIST = properties.getProperty('POM_LICENCE_DIST')
+
+def POM_SCM_URL = properties.getProperty('POM_SCM_URL')
+def POM_SCM_CONNECTION = properties.getProperty('POM_SCM_CONNECTION')
+def POM_SCM_DEV_CONNECTION = properties.getProperty('POM_SCM_DEV_CONNECTION')
 
 def POM_DEVELOPER_ID = properties.getProperty('POM_DEVELOPER_ID')
 def POM_DEVELOPER_NAME = properties.getProperty('POM_DEVELOPER_NAME')
@@ -30,7 +31,7 @@ def POM_DEVELOPER_EMAIL = properties.getProperty('POM_DEVELOPER_EMAIL')
 def POM_DEVELOPER_URL = properties.getProperty('POM_DEVELOPER_URL')
 def POM_ISSUE_MANAGEMENT_SYSTEM = properties.getProperty('POM_ISSUE_MANAGEMENT_SYSTEM')
 def POM_ISSUE_MANAGEMENT_URL = properties.getProperty('POM_ISSUE_MANAGEMENT_URL')
-def POM_INCEPTION_YEAR = properties.getProperty('POM_INCEPTION_YEAR')
+
 
 configurations {
     javadocDeps

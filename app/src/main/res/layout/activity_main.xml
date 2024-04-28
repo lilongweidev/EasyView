@@ -65,6 +65,13 @@
                 android:textAllCaps="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_easy_ruler"
+                android:text="简易刻度尺"
+                android:textAllCaps="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </LinearLayout>
