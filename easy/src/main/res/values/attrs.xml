@@ -26,6 +26,15 @@
     <attr name="gradient" format="boolean" />
     <!--渐变颜色数组-->
     <attr name="gradientColorArray" format="reference" />
+    <!--自定义开始角度 0 ，90，180，270-->
+    <attr name="customAngle">
+        <enum name="right" value="0" />
+        <enum name="bottom" value="90" />
+        <enum name="left" value="180" />
+        <enum name="top" value="270" />
+    </attr>
+    <!--是否逆时针方向-->
+    <attr name="counterClockwise" format="boolean" />
     <!--蓝牙地址输入控件-->
     <declare-styleable name="MacAddressEditText">
         <!-- 方框大小，宽高一致 -->
@@ -67,6 +76,10 @@
         <attr name="gradient" />
         <!--渐变颜色数组-->
         <attr name="gradientColorArray" />
+        <!--自定义开始角度 0 ，90，180，270-->
+        <attr name="customAngle"/>
+        <!--是否逆时针方向-->
+        <attr name="counterClockwise"/>
     </declare-styleable>
     <!--计时控件-->
     <declare-styleable name="TimingTextView">
@@ -119,12 +132,9 @@
         <!--渐变颜色数组-->
         <attr name="gradientColorArray" />
         <!--自定义开始角度 0 ，90，180，270-->
-        <attr name="customAngle">
-            <enum name="right" value="0" />
-            <enum name="bottom" value="90" />
-            <enum name="left" value="180" />
-            <enum name="top" value="270" />
-        </attr>
+        <attr name="customAngle"/>
+        <!--是否逆时针方向-->
+        <attr name="counterClockwise"/>
     </declare-styleable>
 <!--    <declare-styleable name="EasyRuler">-->
 <!--        <attr name="textColor"/>-->

@@ -41,6 +41,10 @@ public class PieProgressBarActivity extends EasyActivity<ActivityPieProgressBarB
             }
             binding.progress.setCustomAngle(angle);
         });
+        binding.cbFlag.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            binding.progress.setCounterClockwise(isChecked);
+            binding.cbFlag.setText(isChecked ? "逆时针" : "顺时针");
+        });
         //设置随机进度值
         binding.btnSetProgress.setOnClickListener(v -> {
             int progress = Math.abs(new Random().nextInt() % 100);

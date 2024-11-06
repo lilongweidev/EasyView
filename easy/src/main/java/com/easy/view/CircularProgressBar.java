@@ -108,6 +108,10 @@ public class CircularProgressBar extends View {
      * 是否执行动画
      */
     private boolean isAnimation = false;
+    /**
+     * 是否逆时针绘制
+     */
+    private boolean isCounterClockwise = false;
 
     public CircularProgressBar(Context context) {
         this(context, null);
@@ -141,6 +145,10 @@ public class CircularProgressBar extends View {
                 colorArray[i] = Color.parseColor((String) textArray[i]);
             }
         }
+        // 开始角度
+        mStartAngle = array.getInt(R.styleable.CircularProgressBar_customAngle, 0);
+        // 是否逆时针绘制
+        isCounterClockwise = array.getBoolean(R.styleable.CircularProgressBar_counterClockwise, false);
         array.recycle();
     }
 
@@ -165,10 +173,10 @@ public class CircularProgressBar extends View {
     protected void onDraw(Canvas canvas) {
         int centerX = getWidth() / 2;
         RectF rectF = new RectF();
-        rectF.left = mStrokeWidth;
-        rectF.top = mStrokeWidth;
-        rectF.right = centerX * 2 - mStrokeWidth;
-        rectF.bottom = centerX * 2 - mStrokeWidth;
+        rectF.left = mStrokeWidth / 2;
+        rectF.top = mStrokeWidth / 2;
+        rectF.right = centerX * 2 - mStrokeWidth / 2;
+        rectF.bottom = centerX * 2 - mStrokeWidth / 2;
 
         //绘制进度条背景
         drawProgressbarBg(canvas, rectF);
@@ -215,7 +223,16 @@ public class CircularProgressBar extends View {
         if (!isAnimation) {
             mCurrentAngle = 360 * (mCurrentProgress / mMaxProgress);
         }
-        canvas.drawArc(rectF, mStartAngle, mCurrentAngle, false, paint);
+
+        // 根据 isCounterClockwise 调整绘制角度
+        float startAngle = mStartAngle;
+        float sweepAngle = mCurrentAngle;
+        if (isCounterClockwise) {
+            startAngle = mStartAngle - 360;
+            sweepAngle = -mCurrentAngle;
+        }
+
+        canvas.drawArc(rectF, startAngle, sweepAngle, false, paint);
     }
 
     /**
@@ -244,7 +261,7 @@ public class CircularProgressBar extends View {
         }
         mCurrentProgress = progress;
         mCurrentAngle = 360 * (mCurrentProgress / mMaxProgress);
-        setAnimator(0, mCurrentAngle);
+        setAnimator(mStartAngle, mCurrentAngle);
     }
 
     /**
@@ -275,10 +292,38 @@ public class CircularProgressBar extends View {
     }
 
     /**
+     * 设置角度
+     * @param angle 角度
+     */
+    public void setCustomAngle(int angle) {
+        if (angle >= 0 && angle < 90) {
+            mStartAngle = 0;
+        } else if (angle >= 90 && angle < 180) {
+            mStartAngle = 90;
+        } else if (angle >= 180 && angle < 270) {
+            mStartAngle = 180;
+        } else if (angle >= 270 && angle < 360) {
+            mStartAngle = 270;
+        } else if (angle >= 360) {
+            mStartAngle = 0;
+        }
+        invalidate();
+    }
+
+    /**
      * 设置是否渐变
      */
     public void setGradient(boolean gradient) {
         isGradient = gradient;
+    }
+
+    /**
+     * 设置是否逆时针
+     * @param counterClockwise
+     */
+    public void setCounterClockwise(boolean counterClockwise) {
+        isCounterClockwise = counterClockwise;
+        invalidate();
     }
 
     /**

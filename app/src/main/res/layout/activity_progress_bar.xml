@@ -23,12 +23,66 @@
         app:textColor="@color/teal_200"
         app:textSize="28sp"
         app:gradient="true"
+        app:customAngle="right"
+        app:counterClockwise="false"
         app:gradientColorArray="@array/color"/>
+
+    <LinearLayout
+        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="开始角度："
+            android:textColor="@color/black" />
+
+        <RadioGroup
+            android:id="@+id/rg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="0%" />
+
+            <RadioButton
+                android:id="@+id/rb_90"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="90%" />
+
+            <RadioButton
+                android:id="@+id/rb_180"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="180%" />
+
+            <RadioButton
+                android:id="@+id/rb_270"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="270%" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/cb_flag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="顺时针" />
 
     <Button
         android:id="@+id/btn_set_progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="16dp"
         android:text="随机设置进度" />
 </LinearLayout>

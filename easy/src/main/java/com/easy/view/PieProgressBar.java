@@ -54,7 +54,7 @@ public class PieProgressBar extends View {
     /**
      * 开始角度
      */
-    private int mStartAngle = 0;
+    private int mStartAngle;
 
     /**
      * 当前角度
@@ -88,6 +88,10 @@ public class PieProgressBar extends View {
      * 是否执行动画
      */
     private boolean isAnimation = false;
+    /**
+     * 是否逆时针绘制
+     */
+    private boolean isCounterClockwise = false;
 
     public PieProgressBar(Context context) {
         this(context, null);
@@ -115,7 +119,10 @@ public class PieProgressBar extends View {
                 colorArray[i] = Color.parseColor((String) textArray[i]);
             }
         }
+        // 开始角度
         mStartAngle = array.getInt(R.styleable.PieProgressBar_customAngle, 0);
+        // 是否逆时针绘制
+        isCounterClockwise = array.getBoolean(R.styleable.PieProgressBar_counterClockwise, false);
         array.recycle();
     }
 
@@ -179,8 +186,17 @@ public class PieProgressBar extends View {
         if (!isAnimation) {
             mCurrentAngle = 360 * (mCurrentProgress / mMaxProgress);
         }
+
+        // 根据 isCounterClockwise 调整绘制角度
+        float startAngle = mStartAngle;
+        float sweepAngle = mCurrentAngle;
+        if (isCounterClockwise) {
+            startAngle = mStartAngle - 360;
+            sweepAngle = -mCurrentAngle;
+        }
+
         //开始画圆弧
-        canvas.drawArc(rectF, mStartAngle, mCurrentAngle, true, paint);
+        canvas.drawArc(rectF, startAngle, sweepAngle, true, paint);
     }
 
     /**
@@ -207,6 +223,15 @@ public class PieProgressBar extends View {
      */
     public void setGradient(boolean gradient) {
         isGradient = gradient;
+        invalidate();
+    }
+
+    /**
+     * 设置是否逆时针
+     * @param counterClockwise
+     */
+    public void setCounterClockwise(boolean counterClockwise) {
+        isCounterClockwise = counterClockwise;
         invalidate();
     }
 
